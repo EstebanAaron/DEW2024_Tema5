@@ -1,0 +1,112 @@
+/* Reset de estilos básicos */
+body, h1, h2, p, select, button, article {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", "Helvetica", sans-serif;
+  }
+  
+  /* Estilo general de la página */
+  body {
+    background-color: #121212; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+    line-height: 1.8;
+    padding: 0 20px;
+  }
+  
+  /* Encabezado principal */
+  h1 {
+    color: #ff5722; /* Naranja vibrante */
+    text-align: center;
+    margin: 40px 0;
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  /* Sección principal */
+  main {
+    background-color: #1e1e1e; /* Gris oscuro */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    padding: 25px;
+    max-width: 800px;
+    margin: 40px auto;
+  }
+  
+  /* Estilo de los selectores */
+  select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ff5722; /* Borde naranja */
+    border-radius: 5px;
+    font-size: 1.1em;
+    background-color: #333333; /* Fondo gris oscuro */
+    color: #e0e0e0; /* Texto claro */
+    outline: none;
+  }
+  
+  select:focus {
+    border-color: #ff9800; /* Naranja más claro al enfocar */
+  }
+  
+  /* Estilo de los encabezados y párrafos */
+  h2 {
+    color: #ff9800; /* Naranja brillante */
+    margin: 20px 0 15px;
+    font-size: 2.2em;
+  }
+  
+  p {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: #b0bec5; /* Gris azulado */
+  }
+  
+  /* Estilo de los artículos */
+  article {
+    background: #333333; /* Fondo gris oscuro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    border: 1px solid #455a64; /* Gris azulado */
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo de los elementos de espera */
+  #wait {
+    color: #ff5722; /* Naranja vibrante */
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+  }
+  
+  /* Cabecera secundaria */
+  #cabecera2 {
+    color: #ff9800; /* Naranja brillante */
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  /* Estilo de los textos en previsiones */
+  #text1, #text2 {
+    padding: 20px;
+    border: 1px solid #455a64; /* Gris azulado */
+    border-radius: 8px;
+    background-color: #1e1e1e; /* Fondo gris oscuro */
+    color: #e0e0e0; /* Texto claro */
+    line-height: 1.6;
+  }
+  
+  /* Estilo de los elementos de la lista */
+  option {
+    padding: 10px;
+    font-size: 1em;
+    background-color: #333333; /* Fondo gris oscuro */
+    color: #e0e0e0; /* Texto claro */
+  }
+  

@@ -118,21 +118,13 @@ function showInfoMun(infoMun) {
   h1.textContent = infoMun.municipio.NOMBRE;
   const decoder = new TextDecoder("utf-8");
 
-  p1.innerHTML = decoder.decode(
-    new Uint8Array(
+  p1.innerHTML = 
       `${infoMun.stateSky.description} ${infoMun.temperatura_actual}ºC (max: ${infoMun.temperaturas.max}ºC | min: ${infoMun.temperaturas.min}ºC)`
-        .split("")
-        .map((char) => char.charCodeAt(0))
-    )
-  ).replace(/\n/g, "<br>");
+       
 
-  p2.innerHTML = decoder.decode(
-    new Uint8Array(
+  p2.innerHTML = 
       `(max: ${infoMun.proximos_dias[0].temperatura.maxima}ºC | min: ${infoMun.proximos_dias[0].temperatura.minima}ºC)`
-        .split("")
-        .map((char) => char.charCodeAt(0))
-    )
-  ).replace(/\n/g, "<br>");
-
+      
+  
   wait.textContent = "";
 }

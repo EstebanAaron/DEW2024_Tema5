@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Aplicación de Café Infinito",
+    "description": "Una app que te envía notificaciones cada vez que necesitas más café para seguir programando."
+  },
+  {
+    "id": 2,
+    "name": "Depurador de Bugs Fantasma",
+    "description": "Una herramienta que encuentra y elimina esos bugs que solo aparecen cuando el jefe está mirando."
+  },
+  {
+    "id": 3,
+    "name": "Generador de Excusas para Programadores",
+    "description": "Una app que te da excusas creativas para cuando el código no funciona como debería."
+  },
+  {
+    "id": 4,
+    "name": "Contador de Horas de Stack Overflow",
+    "description": "Una aplicación que mide cuánto tiempo pasas buscando soluciones en Stack Overflow."
+  },
+  {
+    "id": 5,
+    "name": "Simulador de Pantalla Azul",
+    "description": "Una app que simula una pantalla azul de la muerte para asustar a tus amigos programadores."
+  },
+  {
+    "id": 6,
+    "name": "Traductor de Jerga de Programador",
+    "description": "Convierte términos técnicos en lenguaje común para que tus amigos no programadores te entiendan."
+  },
+  {
+    "id": 7,
+    "name": "Generador de Nombres de Variables",
+    "description": "Una app que te sugiere nombres de variables que no sean 'foo' o 'bar'."
+  },
+  {
+    "id": 8,
+    "name": "Recordatorio de Guardar Cambios",
+    "description": "Te envía recordatorios para que no olvides guardar tus cambios antes de ejecutar el código."
+  },
+  {
+    "id": 9,
+    "name": "Simulador de Reuniones Inútiles",
+    "description": "Una app que simula reuniones largas y sin sentido para que aprecies más tu tiempo de programación."
+  },
+  {
+    "id": 10,
+    "name": "Detector de Código Espagueti",
+    "description": "Una herramienta que analiza tu código y te avisa si se está convirtiendo en un plato de espaguetis."
+  }
+]

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Lista de proyectos <a href="index.html">Volver</a></h1>
+  <main>
+    <ul id="projectList">
+      <!-- Elimina estas líneas y reemplázalas por los elementos que se generen dinámicamente -->
+      <li data-id="1">Aplicación de Café Infinito</li>
+      <!-- Fin -->
+    </ul>
+   
+    <div id="detailProject" class="hidden">
+      <h2>Detalles del proyecto</h2>
+      <h3>Nombre del proyecto</h3>
+      <p id="description">Descripción del proyecto</p>
+      <p id="taks">Número de tareas: <span id="taskCount">--</span></p>
+      <p>Número de horas: <span id="totalHours">--</span></p>
+      <p><button id="deleteProject">Borrar Projecto</button></p>
+      <button id="showTasks">Ver tareas</button>
+      <ul id="tasksList">
+        <!-- Elimina estas líneas y reemplázalas por los elementos que se generen dinámicamente -->
+        <li>Tarea: Diseñar interfaz de usuario | Horas: 40</li>
+        <!-- Fin -->
+      </ul>
+    </div>
+    <script defer>
+      const ul = document.getElementById('projectList');
+      const buttondelete = document.getElementById("deleteProject")
+      const taks = document.getElementById("showTasks")
+      const ultaks = document.getElementById('tasksList')
+
+      async function Projects() {
+        try{
+          const response = await fetch('http://localhost:3000/api/project');
+          if (!response.ok) {
+            throw new Error('Fallo http: ' + response.status);
+        }
+        projects = await response.json();
+
+        projects.forEach(project => {renderProject(project)
+        });
+      }
+      catch(e){
+        console.log('Error en el fetch de projectos : '+e);
+      }
+      }
+      async function Project(project) {
+        try{
+          const response = await fetch('http://localhost:3000/api/project/'+project.id);
+          if (!response.ok) {
+            throw new Error('Fallo http: ' + response.status);
+        }
+        project = await response.json();
+        return project;
+       
+      }
+      catch(e){
+        console.log('Error en el fetch de projectos : '+e);
+      }
+    }
+      function renderProject(project){
+        const li = document.createElement('li');
+        const div = document.getElementById('detailProject');
+        const h3 = document.querySelector('h3');
+        const description = document.getElementById("description");
+        const tasks = document.getElementById("taskCount");
+        const hours = document.getElementById("totalHours");
+        li.addEventListener('click',async (e)=>{
+          let data =  await Project(project);
+
+          div.className="";
+          h3.textContent=project.name
+          description.textContent= data.description
+          tasks.textContent= data.taskCount
+          hours.textContent= data.totalHours
+          taks.setAttribute('data-id',data.id);
+          ultaks.className="hidden"
+          if (data.taskCount==0) {
+            taks.className="hidden"
+          }else{
+            taks.className=""
+          }
+          buttondelete.setAttribute("data-id",data.id)
+          
+          
+            
+        })
+        li.textContent = project.name;
+        li.id=project.id;
+        ul.append(li)
+      }
+      Projects();
+      async function DeleteProject(project) {
+        try{
+        const response = await fetch('http://localhost:3000/api/project/'+project,{
+          method: "DELETE"
+        })
+        if(response.ok){
+          alert(" se borro correctamente")
+        }
+        else{
+          alert("no se pudo borrar")
+        }
+        
+        window.location.href = "project.html";
+      }
+      catch(e){
+        console.log('Error en el fetch de  borrar projecto : '+e);
+      
+      }
+      }
+      buttondelete.addEventListener('click', async (e)=>{
+          DeleteProject(buttondelete.getAttribute("data-id"));
+           
+          })
+      taks.addEventListener('click', (e)=>{
+        ultaks.innerHTML=""
+        TaksShow(taks.getAttribute("data-id"))
+      })
+      async function TaksShow(projectID) {
+        try{
+        const response = await fetch('http://localhost:3000/api/project/'+projectID+"/task")
+        if (!response.ok) {
+            throw new Error('Fallo http: ' + response.status);
+        }
+        tasks = await response.json();
+
+        tasks.forEach(task => {renderTasks(task)
+        });
+        }
+        catch(e){
+          console.log('Error en el fetch de projectos : '+e);
+        }
+        
+      }
+      function renderTasks(task){
+        
+        const li = document.createElement('li');
+        li.textContent= "Tarea: "+task.concept+" | Horas: "+ task.duration;  
+        ultaks.append(li);
+        ultaks.className=""
+      }
+
+    </script>
+  </main>
+<!-- //BORRAR MAS -->
+</body>
+</html>

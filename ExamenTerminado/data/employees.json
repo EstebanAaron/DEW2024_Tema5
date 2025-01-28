@@ -1,0 +1,12 @@
+[
+  { "id": 1, "name": "Alice Johnson", "role": "Developer", "hourCost": 30 },
+  { "id": 2, "name": "Bob Smith", "role": "Designer", "hourCost": 25 },
+  { "id": 3, "name": "Charlie Brown", "role": "Tester", "hourCost": 20 },
+  { "id": 4, "name": "Diana Prince", "role": "Project Manager", "hourCost": 35 },
+  { "id": 5, "name": "Eve Adams", "role": "Developer", "hourCost": 30 },
+  { "id": 6, "name": "Frank Wright", "role": "Designer", "hourCost": 25 },
+  { "id": 7, "name": "Grace Hopper", "role": "Developer", "hourCost": 30 },
+  { "id": 8, "name": "Hank Pym", "role": "Tester", "hourCost": 20 },
+  { "id": 9, "name": "Ivy Green", "role": "Developer", "hourCost": 30 },
+  { "id": 10, "name": "Jack White", "role": "Designer", "hourCost": 25 }
+]

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Lista de empleados <a href="index.html">Volver</a></h1>
+  <main>
+      <ul id="employeeList">
+       
+      </ul>
+      <script>
+        const ul = document.getElementById('employeeList');
+        const back = document.querySelector('a');
+        async function Employee() {
+          try {
+            const response =  await fetch ('http://localhost:3000/api/employee');
+            if (!response.ok) {
+              throw new Error('Fallo http: ' + response.status);
+          }
+          employees = await response.json();
+          //en caso de cargar mas aqui
+          employees.forEach(employee => {renderEmployee(employee);
+          });
+        }
+        catch (e){
+          console.log('Error en el fetch de empleados : '+e);
+          
+        }
+          
+        }
+
+        function renderEmployee(employee){
+          const li = document.createElement('li');
+          
+          li.textContent=employee.name+' | '+employee.role+' | '+employee.hourCost+"€/hora";
+          li.setAttribute('data-id',employee.id);
+          if (localStorage.employeesMark) {
+            if (JSON.parse(localStorage.employeesMark).indexOf(li.getAttribute('data-id'))>=0) {
+              li.className="marked"
+            }
+            
+          }
+
+          ul.append(li);
+          li.addEventListener('click', (e)=>{
+            if(li.className=="marked"){
+              li.className="";
+            }
+            else{
+              li.className="marked"
+            }
+          })
+        }
+        back.addEventListener('click',(e)=>{
+          e.preventDefault();
+          const listMark = document.querySelectorAll('li')
+          let employeeMark =[];
+          localStorage.employeesMark="";
+          
+          listMark.forEach(li =>{
+            if(li.className=="marked"){
+              console.log(li);
+              
+              employeeMark.push(li.getAttribute('data-id'))
+            }
+          })
+          console.log(employeeMark);
+          localStorage.employeesMark= JSON.stringify(employeeMark);
+          window.location.href = "index.html";
+        })
+        Employee();
+      </script>
+  </main>
+</body>
+
+</html>

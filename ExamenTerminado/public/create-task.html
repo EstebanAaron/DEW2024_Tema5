@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <head rel="stylesheet" href="style.css">
+  </head>
+
+<body>
+  <h1>Crear Tarea <a href="index.html">Volver</a></h1>
+  <main>
+
+    <form id="taskForm">
+      <label for="concept">Concepto:</label>
+      <input type="text" id="concept" name="concept"><br><br>
+
+      <label for="duration">Duración:</label>
+      <input type="number" id="duration" name="duration"><br><br>
+
+      <label for="project">Proyecto:</label>
+      <select id="project" name="project"></select><br><br>
+
+      <button type="submit">Crear Tarea</button>
+    </form>
+  </main>
+  <div id="message"></div>
+  <script>
+    const concept = document.getElementById("concept")
+    const duration = document.getElementById("duration")
+    const projectsOptions = document.getElementById("project")
+    const buttonSubmit = document.querySelector("button")
+
+
+    async function Projects() {
+      try {
+        const response = await fetch('http://localhost:3000/api/project');
+        if (!response.ok) {
+          throw new Error('Fallo http: ' + response.status);
+        }
+        projects = await response.json();
+
+        projects.forEach(project => {
+          renderProject(project)
+        });
+      }
+      catch (e) {
+        console.log('Error en el fetch de projectos : ' + e);
+      }
+    }
+    function renderProject(project) {
+      const option = document.createElement("option")
+      option.setAttribute("data-id", project.id);
+      option.value = project.id
+      option.textContent = project.name
+      projectsOptions.append(option)
+    }
+    Projects()
+
+    async function CreateTask() {
+
+
+      const articulo = {
+        "project_id": parseInt(projectsOptions.value),
+        "concept": concept.value,
+        "duration": duration.value
+      }
+
+      const options = {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(articulo)
+      }
+      try {
+        const response = await fetch('http://localhost:3000/api/task', options);
+        console.log("Respuesta del servidor:", response); 
+        if (!response.ok) {
+          throw new Error('Fallo http en el crear: ' + response.status);
+        }
+        const task = await response.json(); 
+        console.log(task);
+      } catch (e) {
+        console.error('Error en el fetch de crear: ' + e);
+      }
+    }
+    buttonSubmit.addEventListener("click", (e)=>{
+      e.preventDefault()
+      CreateTask()
+      
+      
+    })
+  </script>
+
+</body>
+
+</html>

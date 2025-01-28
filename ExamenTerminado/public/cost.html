@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Costes <a href="index.html">Volver</a></h1>
+  <main>
+    <!-- Elimina estas líneas y reemplázalas por los elementos que se generen dinámicamente -->
+      <!-- <div>
+        <h2>Nombre Empleado</h2>
+        <blockquote>
+        <p>Cargo: Student</p>
+        <p>Coste: 0.5€/hora</p>
+        <ul class="tasksCostList">
+          <li>Estudiar Javascript: 100 horas</li><li>Aprobar examen: 3 horas</li>
+        </ul>
+        <h3>Coste empleado: 51.50€</h3>   
+        </blockquote>   
+      </div>
+    
+    <h2>Total: 51.50€</h2> -->
+    <!-- Fin -->
+  </main>
+<script>
+  const main =document.querySelector("main");
+  const employeesID =JSON.parse(localStorage.employeesMark);
+  let totalCost =0;
+  processEmployees(employeesID)
+  
+  async function processEmployees(employeesID) {
+   try {
+    for (const id of employeesID) {
+     
+      const employee = await EmployeeData(parseInt(id));
+      const tasks = await EmployeeTask(parseInt(id));
+
+      
+      renderEmployee(employee, tasks);
+   } 
+  }catch (e) {
+    console.error("Error procesando empleados:", e);
+   }
+  }
+  async function EmployeeData(id) {
+          try {
+            const response =  await fetch ('http://localhost:3000/api/employee/'+id);
+            if (!response.ok) {
+              throw new Error('Fallo http: ' + response.status);
+          }
+          const employee = await  response.json();
+          //en caso de cargar mas aqui
+          console.log(employee);
+          
+          return employee
+          
+        }
+        catch (e){
+          console.log('Error en el fetch de empleado : '+e);
+          
+        }
+          
+        }
+  async function EmployeeTask(id) {
+    try {
+            const response =  await fetch ('http://localhost:3000/api/employee/'+id+'/task');
+            if (!response.ok) {
+              throw new Error('Fallo http: ' + response.status);
+          }
+          tasks = await response.json();
+          //en caso de cargar mas aqui
+          console.log(tasks);
+          
+          return tasks
+          
+        }
+        catch (e){
+          console.log('Error en el fetch de tareas : '+e);
+          
+        }
+  }
+ 
+  async function renderEmployee(employe,tasks){
+   
+    const div = document.createElement("div");
+    const h2 =document.createElement("h2");
+    const blockquote = document.createElement("blockquote");
+    const ul =document.createElement("ul");
+    const h3 = document.createElement("h3");
+    const total =document.createElement("h2");
+    const p1=document.createElement("p");
+    const p2 =document.createElement("p");
+    let horastotal =0
+    ul.className="tasksCostList"
+
+
+    h2.textContent=employe.name;
+    p1.textContent="Cargo: "+employe.role;
+    p2.textContent="Coste: "+employe.hourCost+"€/hora";
+    tasks.forEach(task => {
+      const li =document.createElement('li')
+      li.textContent=task.concept+" : "+task.duration+" horas";
+      ul.append(li)
+      horastotal+=task.duration
+    });
+    if (tasks.length==0) {
+      const li =document.createElement('li')
+      li.textContent="No tiene tareas asignadas"
+      ul.append(li)
+    }
+    h3.textContent="Coste empleado : "+(horastotal*employe.hourCost)+" €";
+    
+    totalCost+=(horastotal*employe.hourCost)
+
+
+    blockquote.append(p1,p2,ul,h3)
+    div.append(h2,blockquote)
+    main.append(div,total)
+    totalCostH2.textContent="Total: "+totalCost+" €"
+    main.append(totalCostH2)
+  }
+  const totalCostH2 =document.createElement("h2")
+
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transiciones CSS</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            transition: all 1s;
+        }
+
+        /* Cambio de color */
+        #box1 {
+            background-color: #c0392b;
+        }
+        #box1:hover {
+            background-color: #3f51b5;
+        }
+
+        /* Cambio de borde */
+        #box2 {
+            background-color: #95a5a6;
+            border: 3px solid black;
+        }
+        #box2:hover {
+            border-color: #3f51b5;
+        }
+
+        /* Cambio de border-radius */
+        #box3 {
+            background-color: #17a589;
+            border-radius: 0px;
+        }
+        #box3:hover {
+            border-radius: 20px;
+        }
+
+        /* Cambio de sombra */
+        #box4 {
+            background-color: #f1c40f;
+            box-shadow: 10px 10px 14px 2px rgba(0, 0, 0, 0.47);
+        }
+        #box4:hover {
+            box-shadow: 10px 10px 14px 2px rgba(0, 0, 0, 1);
+        }
+
+        /* Cambio de color del texto */
+        #box5 {
+            background-color: #2980B9;
+        }
+        #box5:hover {
+            color: red;
+        }
+
+        /* Cambio de tamaño de fuente */
+        #box6 {
+            background-color: #9B59B6;
+            font-size: 16px;
+        }
+        #box6:hover {
+            font-size: 28px;
+        }
+
+        /* Cambio de line-height */
+        #box7 {
+            background-color: #3498DB;
+            line-height: normal;
+        }
+        #box7:hover {
+            line-height: 300px;
+        }
+
+        /* Cambio de margen */
+        #box8 {
+            background-color: #2C3E50;
+            margin: 80px;
+        }
+        #box8:hover {
+            margin: 100px;
+        }
+
+        /* Cambio de opacidad */
+        #box9 {
+            background-color: #E67E22;
+            opacity: 1;
+        }
+        #box9:hover {
+            opacity: 0.3;
+        }
+
+        /* Cambio de padding */
+        #box10 {
+            background-color: black;
+            padding: 30px;
+        }
+        #box10:hover {
+            padding: 50px;
+        }
+
+        /* Escalado */
+        #box11 {
+            background-color: #1ABC9C;
+            transform: scale(1);
+        }
+        #box11:hover {
+            transform: scale(1.2);
+        }
+
+        /* Rotación */
+        #box12 {
+            background-color: #8E44AD;
+            transform: rotate(0deg);
+        }
+        #box12:hover {
+            transform: rotate(45deg);
+        }
+
+        /* Desenfoque */
+        #box13 {
+            background-color: #D35400;
+            filter: blur(0px);
+        }
+        #box13:hover {
+            filter: blur(5px);
+        }
+
+        /* Inclinación */
+        #box14 {
+            background-color: #C0392B;
+            transform: skew(0deg);
+        }
+        #box14:hover {
+            transform: skew(10deg, 10deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="box1" class="box">Color</div>
+        <div id="box2" class="box">Borde</div>
+        <div id="box3" class="box">Border Radius</div>
+        <div id="box4" class="box">Sombra</div>
+        <div id="box5" class="box">Color Texto</div>
+        <div id="box6" class="box">Tamaño Texto</div>
+        <div id="box7" class="box">Line Height</div>
+        <div id="box8" class="box">Margen</div>
+        <div id="box9" class="box">Opacidad</div>
+        <div id="box10" class="box">Padding</div>
+        <div id="box11" class="box">Escala</div>
+        <div id="box12" class="box">Rotación</div>
+        <div id="box13" class="box">Desenfoque</div>
+        <div id="box14" class="box">Inclinación</div>
+    </div>
+
+</body>
+</html>
